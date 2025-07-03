@@ -1,38 +1,86 @@
 "use client";
 
 import Image from "next/image";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Monitor } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface HeaderProps {
   onThemeToggle?: () => void;
+  onThemeCycle?: () => void;
+  theme?: 'light' | 'dark' | 'system';
   isDark?: boolean;
 }
 
-export default function Header({ onThemeToggle, isDark }: HeaderProps) {
+export default function Header({ onThemeToggle, onThemeCycle, theme = 'system', isDark }: HeaderProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const getThemeIcon = () => {
+    switch (theme) {
+      case 'light':
+        return <Sun className="w-5 h-5 text-amber-500" />;
+      case 'dark':
+        return <Moon className="w-5 h-5 text-blue-400" />;
+      case 'system':
+      default:
+        return <Monitor className="w-5 h-5 text-gray-500 dark:text-gray-400" />;
+    }
+  };
+
+  const getThemeLabel = () => {
+    switch (theme) {
+      case 'light':
+        return 'Light mode';
+      case 'dark':
+        return 'Dark mode';
+      case 'system':
+      default:
+        return 'System theme';
+    }
+  };
+
   return (
-    <header className="relative overflow-hidden bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-700">
+    <header className="relative overflow-hidden bg-surface border-b border-custom shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="text-center relative z-10">
-          {/* Theme Toggle */}
+          {/* Enhanced Theme Toggle */}
           <div className="absolute top-0 right-0">
-            <button
-              onClick={onThemeToggle}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              aria-label="Toggle theme"
-            >
-              {isDark ? (
-                <Sun className="w-5 h-5 text-yellow-500" />
-              ) : (
-                <Moon className="w-5 h-5 text-gray-600" />
+            <div className="flex items-center gap-2">
+              {mounted && (
+                <>
+                  <button
+                    onClick={onThemeToggle}
+                    className="p-2 rounded-lg bg-surface-elevated hover:bg-surface-hover border border-custom transition-all duration-200 focus-ring"
+                    aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+                    title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+                  >
+                    {isDark ? (
+                      <Sun className="w-5 h-5 text-amber-500" />
+                    ) : (
+                      <Moon className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                    )}
+                  </button>
+                  
+                  <button
+                    onClick={onThemeCycle}
+                    className="p-2 rounded-lg bg-surface-elevated hover:bg-surface-hover border border-custom transition-all duration-200 focus-ring"
+                    aria-label={getThemeLabel()}
+                    title={`Current: ${getThemeLabel()}`}
+                  >
+                    {getThemeIcon()}
+                  </button>
+                </>
               )}
-            </button>
+            </div>
           </div>
 
           <div className="flex justify-center mb-8 animate-fade-in">
-            <div className="relative">
+            <div className="relative group">
               <Image
-                className="drop-shadow-lg dark:hidden"
+                className="drop-shadow-lg dark:hidden transition-transform duration-300 group-hover:scale-105"
                 src="/logo.svg"
                 alt="DownloadHub logo"
                 width={200}
@@ -40,33 +88,46 @@ export default function Header({ onThemeToggle, isDark }: HeaderProps) {
                 priority
               />
               <Image
-                className="drop-shadow-lg hidden dark:block"
+                className="drop-shadow-lg hidden dark:block transition-transform duration-300 group-hover:scale-105"
                 src="/logo-dark.svg"
                 alt="DownloadHub logo"
                 width={200}
                 height={42}
                 priority
               />
-              <div className="absolute -inset-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg blur-lg animate-pulse"></div>
+              <div className="absolute -inset-3 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm animate-pulse"></div>
             </div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-6 animate-slide-up">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold gradient-text mb-6 animate-slide-up">
             DownloadHub
           </h1>
           
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed animate-slide-up-delay">
+          <p className="text-xl text-foreground-secondary max-w-3xl mx-auto leading-relaxed animate-slide-up-delay">
             Your secure file center for downloading essential documents, resources, and files. 
             Everything you need in one convenient, trusted location.
           </p>
+
+          {/* Enhanced Feature Badges */}
+          <div className="flex flex-wrap justify-center gap-3 mt-8 animate-fade-in-up">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-success-light text-success border border-green-200 dark:border-green-800">
+              🔒 Secure Downloads
+            </span>
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800">
+              ⚡ Fast Access
+            </span>
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-50 text-purple-700 border border-purple-200 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-800">
+              📱 Mobile Ready
+            </span>
+          </div>
         </div>
       </div>
       
       {/* Enhanced decorative background elements */}
       <div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full animate-float"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/5 to-purple-400/5 rounded-full animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full animate-float blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full animate-float-delayed blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/5 to-purple-400/5 rounded-full animate-pulse blur-3xl"></div>
       </div>
     </header>
   );

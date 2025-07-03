@@ -49,9 +49,9 @@ const downloadableFiles: FileItem[] = [
 ];
 
 export default function Home() {
-	const { isDark, toggleTheme } = useTheme();
-	const [searchQuery, setSearchQuery] = useState("");
-	const [activeFilter, setActiveFilter] = useState("all");
+  const { theme, isDark, toggleTheme, cycleTheme } = useTheme();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeFilter, setActiveFilter] = useState("all");
 
 	// Get unique file types for filter buttons
 	const fileTypes = useMemo(() => {
@@ -81,11 +81,14 @@ export default function Home() {
 
 	const handleFilter = (type: string) => {
 		setActiveFilter(type);
-	};
-
-	return (
-		<div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-			<Header onThemeToggle={toggleTheme} isDark={isDark} />
+	};  return (
+    <div className="min-h-screen bg-background">
+      <Header 
+        onThemeToggle={toggleTheme} 
+        onThemeCycle={cycleTheme}
+        theme={theme}
+        isDark={isDark} 
+      />
 
 			{/* Main content */}
 			<main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -100,17 +103,17 @@ export default function Home() {
 				{/* Downloads section */}
 				<section>
 					<div className="text-center mb-12">
-						<h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+						<h2 className="text-3xl font-bold text-foreground mb-4">
 							Available Downloads
 							{filteredFiles.length !== downloadableFiles.length && (
-								<span className="text-lg font-normal text-gray-500 dark:text-gray-400 ml-2">
+								<span className="text-lg font-normal text-foreground-muted ml-2">
 									(
 									{filteredFiles.length} of{" "}
 									{downloadableFiles.length})
 								</span>
 							)}
 						</h2>
-						<p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+						<p className="text-foreground-secondary max-w-2xl mx-auto">
 							{searchQuery || activeFilter !== "all"
 								? `Showing filtered results. ${filteredFiles.length} files match your criteria.`
 								: "Choose from our collection of files below. Each download is ready to use and comes with detailed information about file size and content."}

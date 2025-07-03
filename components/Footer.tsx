@@ -3,7 +3,7 @@ import { Shield, Download, Zap, Users, Mail, HelpCircle, Heart } from "lucide-re
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+    <footer className="bg-surface border-t border-custom">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
@@ -24,22 +24,22 @@ export default function Footer() {
                 height={25}
               />
             </div>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
+            <p className="text-foreground-secondary text-sm">
               Your trusted file download center. Secure, fast, and reliable file sharing for everyone.
             </p>
-            <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400 text-sm">
+            <div className="flex items-center gap-1 text-foreground-secondary text-sm">
               Made with <Heart className="w-4 h-4 text-red-500" /> for you
             </div>
           </div>
 
           {/* Services Section */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Services</h3>
+            <h3 className="font-semibold text-foreground mb-3">Services</h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#downloads"
-                  className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  className="flex items-center gap-2 text-foreground-secondary hover:text-primary transition-colors text-sm"
                 >
                   <Download className="w-3 h-3" />
                   File Downloads
@@ -48,7 +48,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#security"
-                  className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  className="flex items-center gap-2 text-foreground-secondary hover:text-primary transition-colors text-sm"
                 >
                   <Shield className="w-3 h-3" />
                   Security Center
@@ -57,7 +57,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#premium"
-                  className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  className="flex items-center gap-2 text-foreground-secondary hover:text-primary transition-colors text-sm"
                 >
                   <Zap className="w-3 h-3" />
                   Premium Access
@@ -68,12 +68,12 @@ export default function Footer() {
 
           {/* Support Section */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Support</h3>
+            <h3 className="font-semibold text-foreground mb-3">Support</h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#help"
-                  className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  className="flex items-center gap-2 text-foreground-secondary hover:text-primary transition-colors text-sm"
                 >
                   <HelpCircle className="w-3 h-3" />
                   Help Center
@@ -82,7 +82,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#contact"
-                  className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  className="flex items-center gap-2 text-foreground-secondary hover:text-primary transition-colors text-sm"
                 >
                   <Mail className="w-3 h-3" />
                   Contact Us
@@ -91,7 +91,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#community"
-                  className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  className="flex items-center gap-2 text-foreground-secondary hover:text-primary transition-colors text-sm"
                 >
                   <Users className="w-3 h-3" />
                   Community
@@ -102,12 +102,12 @@ export default function Footer() {
 
           {/* Legal Section */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Legal</h3>
+            <h3 className="font-semibold text-foreground mb-3">Legal</h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#privacy"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  className="text-foreground-secondary hover:text-primary transition-colors text-sm"
                 >
                   Privacy Policy
                 </a>
@@ -115,7 +115,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#terms"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  className="text-foreground-secondary hover:text-primary transition-colors text-sm"
                 >
                   Terms of Service
                 </a>
@@ -123,7 +123,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#cookies"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  className="text-foreground-secondary hover:text-primary transition-colors text-sm"
                 >
                   Cookie Policy
                 </a>
@@ -133,17 +133,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <div className="mt-8 pt-8 border-t border-custom">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
+            <p className="text-foreground-secondary text-sm">
               © 2025 DownloadHub. All rights reserved.
             </p>
             <div className="flex items-center gap-4 text-sm">
               <a 
                 href="#status" 
-                className="text-green-500 hover:text-green-600 transition-colors flex items-center gap-1"
+                className="text-success hover:text-green-600 transition-colors flex items-center gap-1"
               >
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
                 All Systems Operational
               </a>
             </div>
