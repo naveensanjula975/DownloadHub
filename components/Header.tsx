@@ -32,9 +32,17 @@ export default function Header({ onThemeToggle, isDark }: HeaderProps) {
           <div className="flex justify-center mb-8 animate-fade-in">
             <div className="relative">
               <Image
-                className="dark:invert drop-shadow-lg"
-                src="/next.svg"
-                alt="Next.js logo"
+                className="drop-shadow-lg dark:hidden"
+                src="/logo.svg"
+                alt="DownloadHub logo"
+                width={200}
+                height={42}
+                priority
+              />
+              <Image
+                className="drop-shadow-lg hidden dark:block"
+                src="/logo-dark.svg"
+                alt="DownloadHub logo"
                 width={200}
                 height={42}
                 priority
@@ -44,12 +52,12 @@ export default function Header({ onThemeToggle, isDark }: HeaderProps) {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-6 animate-slide-up">
-            File Download Center
+            DownloadHub
           </h1>
           
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed animate-slide-up-delay">
-            Access and download essential files, documentation, and resources. 
-            Everything you need in one convenient, secure location.
+            Your secure file center for downloading essential documents, resources, and files. 
+            Everything you need in one convenient, trusted location.
           </p>
         </div>
       </div>

@@ -1,6 +1,8 @@
-# 🚀 File Download Center
+# 🚀 DownloadHub
 
 A modern, responsive file download center built with Next.js 15, TypeScript, and Tailwind CSS.
+
+![DownloadHub Logo](public/logo.svg)
 
 ## ✨ Features
 
