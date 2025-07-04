@@ -46,6 +46,15 @@ const downloadableFiles: FileItem[] = [
 			"Step-by-step user guide in Markdown format with screenshots",
 		uploadDate: "2025-07-01",
 	},
+	{
+		name: "Proxy Configuration",
+		filename: "proxy-menu.bat",
+		type: "bat",
+		size: "3.2 KB",
+		description:
+			"Windows batch script for easy proxy enable/disable with Git and npm support",
+		uploadDate: "2025-07-04",
+	},
 ];
 
 export default function Home() {

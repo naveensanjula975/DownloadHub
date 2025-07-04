@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, FileText, Archive, Settings, BookOpen, File, AlertCircle } from "lucide-react";
+import { Download, FileText, Archive, Settings, BookOpen, File, AlertCircle, Terminal } from "lucide-react";
 import { useState } from "react";
 
 interface FileItem {
@@ -43,6 +43,12 @@ const fileTypeConfig = {
     color: "text-orange-500 dark:text-orange-400", 
     bgColor: "bg-orange-50 dark:bg-orange-900/20",
     borderColor: "border-orange-200 dark:border-orange-800"
+  },
+  bat: { 
+    icon: Terminal, 
+    color: "text-yellow-600 dark:text-yellow-400", 
+    bgColor: "bg-yellow-50 dark:bg-yellow-900/20",
+    borderColor: "border-yellow-200 dark:border-yellow-800"
   },
   default: { 
     icon: FileText, 
