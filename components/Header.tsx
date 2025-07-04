@@ -5,13 +5,12 @@ import { Moon, Sun, Monitor } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface HeaderProps {
-  onThemeToggle?: () => void;
   onThemeCycle?: () => void;
   theme?: 'light' | 'dark' | 'system';
   isDark?: boolean;
 }
 
-export default function Header({ onThemeToggle, onThemeCycle, theme = 'system', isDark }: HeaderProps) {
+export default function Header({ onThemeCycle, theme = 'system', isDark }: HeaderProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -46,35 +45,20 @@ export default function Header({ onThemeToggle, onThemeCycle, theme = 'system', 
     <header className="relative overflow-hidden bg-surface border-b border-custom shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="text-center relative z-10">
-          {/* Enhanced Theme Toggle */}
+          {/* Single Theme Toggle */}
           <div className="absolute top-0 right-0">
-            <div className="flex items-center gap-2">
-              {mounted && (
-                <>
-                  <button
-                    onClick={onThemeToggle}
-                    className="p-2 rounded-lg bg-surface-elevated hover:bg-surface-hover border border-custom transition-all duration-200 focus-ring"
-                    aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-                    title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-                  >
-                    {isDark ? (
-                      <Sun className="w-5 h-5 text-amber-500" />
-                    ) : (
-                      <Moon className="w-5 h-5 text-slate-600 dark:text-slate-400" />
-                    )}
-                  </button>
-                  
-                  <button
-                    onClick={onThemeCycle}
-                    className="p-2 rounded-lg bg-surface-elevated hover:bg-surface-hover border border-custom transition-all duration-200 focus-ring"
-                    aria-label={getThemeLabel()}
-                    title={`Current: ${getThemeLabel()}`}
-                  >
-                    {getThemeIcon()}
-                  </button>
-                </>
-              )}
-            </div>
+            {mounted && (
+              <button
+                onClick={onThemeCycle}
+                className="p-2 rounded-lg bg-surface-elevated hover:bg-surface-hover border border-custom transition-all duration-200 focus-ring group"
+                aria-label={getThemeLabel()}
+                title={`Current: ${getThemeLabel()} - Click to cycle themes`}
+              >
+                <div className="transition-transform duration-200 group-hover:scale-110">
+                  {getThemeIcon()}
+                </div>
+              </button>
+            )}
           </div>
 
           <div className="flex justify-center mb-8 animate-fade-in">
